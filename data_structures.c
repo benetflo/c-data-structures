@@ -19,16 +19,16 @@ typedef struct{
 }Vector;
 
 Vector create_vector(uint32_t capacity){
-	Vector v;
-	v.capacity = capacity;
-	v.elements = 0;
-	v.array = malloc((sizeof(int)) * capacity);
-	if(v.array == NULL){
+	Vector vector;
+	vector.capacity = capacity;
+	vector.elements = 0;
+	vector.array = malloc((sizeof(int)) * capacity);
+	if(vector.array == NULL){ //CHECK IN MAIN?
 		Vector c;
 		printf("Failed allocating memory\n");
 		return c;
 	}
-	return v;
+	return vector;
 }
 
 void resize_vector(Vector *vec){
