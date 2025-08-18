@@ -46,7 +46,7 @@ void resize_vector(Vector *vec){
 	free(old_array);
 }
 
-void add_back(Vector *vec, uint32_t element){
+void add_back(Vector *vec, int element){
 	if(vec->elements == vec->capacity){
 		resize_vector(vec);
 	}
@@ -54,3 +54,27 @@ void add_back(Vector *vec, uint32_t element){
 	vec->elements++;
 }
 
+void pop_back(Vector *vec){
+	if(vec->elements == 0){
+		printf("Vector is empty!\n");
+		return;
+	}
+	vec->array[vec->elements] = 0;
+	vec->elements--;
+}
+
+int main(){
+
+	Vector v = create_vector(3);
+	add_back(&v, 12);
+	add_back(&v, 15);
+	add_back(&v, 0);
+	add_back(&v, 1);
+
+	pop_back(&v);
+
+	for(int i = 0; i < v.elements; i++){
+		printf("%d\n", v.array[i]);
+	}
+	return 0;
+}
