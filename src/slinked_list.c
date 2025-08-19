@@ -1,3 +1,7 @@
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 /*
 	SINGLE LINKED LIST IMPLEMENTATION
 
@@ -8,7 +12,7 @@ typedef struct Node{
 	struct Node* next;
 }Node;
 
-Node* create_slinked_list(){
+Node* create_slinklist(){
 
 	Node* head = NULL;
 	return head;
@@ -123,3 +127,51 @@ void insert_at_index(Node** head, uint8_t index, int data){
 	n->next = temp;
 }
 
+void print_slinklist(Node** head){
+
+	if((*head) == NULL){
+		printf("List is empty\n");
+		return;
+	}
+	Node* current = *head;
+	while(current != NULL){
+		printf("%d ", current->data);
+		current = current->next;
+	}
+	printf("\n");
+}
+
+uint16_t count_nodes(Node** head){
+
+	Node* current = *head;
+	uint16_t count = 0;
+
+	while(current != NULL){
+		current = current->next;
+		count++;
+	}
+	return count;
+}
+
+void free_slinklist(Node** head){
+
+	Node* current = *head;
+	Node* temp;
+
+	while(current != NULL){
+		temp = current;
+		current = current->next;
+		free(temp);
+	}
+
+	*head = NULL;
+}
+
+int main(){
+
+	Node* list = create_slinklist();
+	add_back(&list, 10);
+	add_back(&list, 15);
+	print_slinklist(&list);
+	return 0;
+}
